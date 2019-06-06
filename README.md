@@ -1,6 +1,6 @@
 # Ethereum Voting Contract implemented in Truffle and Solidity #
 
-### The voting contract has only 3 fixed options to choose from: 0 or 1 or 2. The votes can come only from the addresses that are marked as "verified". Thus, the creator (owner) of the contract must mark all permitted addresses as "verified" before the voting can begin (write a function that would help the creator to mark an address as "verified"). To prevent cheating, each verified account can vote only once - after voting, the address is marked as "unverified" and thus can't vote again ... unless the creator (owner) of the contract marks it as "verified" again. Return the winner(s) with the most votes. ###
+_The voting contract has only 3 fixed options to choose from: 0 or 1 or 2. The votes can come only from the addresses that are marked as "verified". Thus, the creator (owner) of the contract must mark all permitted addresses as "verified" before the voting can begin (write a function that would help the creator to mark an address as "verified"). To prevent cheating, each verified account can vote only once - after voting, the address is marked as "unverified" and thus can't vote again, unless the creator (owner) of the contract marks it as "verified" again. Return the winner(s) with the most votes._
 
 - The contract supports more than one creator (accounts with special privileges), defined at the creation time or added later.
 - The Truffle package contracts contains Solidity tests.
@@ -82,3 +82,34 @@ _Step 0: Clone this repo :)_
         v.vote(1, {from: accounts[1]})
  
     Ran successfully in Remix to heed its linter warnings.
+
+### Truffle Commands ###
+Before starting ganache make sure truffle.js contents match your own ganache configuration e.g.
+```
+    module.exports = {
+    networks: {
+        development: {
+        host: "127.0.0.1",
+        port: 7545,
+        network_id: "*"
+        }
+    }
+    };
+```
+
+    ganache
+
+    truffle console
+    compile
+    migrate
+
+    let a = await web3.eth.getAccounts()
+    let v = await Voting.deployed()
+    let r = await v.addVoter(accounts[1])
+    v.vote(1, {from: accounts[1]})
+
+    Voting.deployed().then(function(v) { return v.addVoter("0x52dD9Eb3025Cf6Ac3cfe7EEd86D235d46FA2B76D"); });
+
+    t = await v.sendTransaction({from: '0x52dD9Eb3025Cf6Ac3cfe7EEd86D235d46FA2B76D', value: 10000000000000000000})
+    
+    web3.fromWei((gasEstimate	*	web3.eth.getGasPrice()),	'ether')
