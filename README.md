@@ -7,7 +7,7 @@ _The voting contract has only 3 fixed options to choose from: 0 or 1 or 2. The v
 - The voting ends when the first name of the president of Cyprus is "Mario". Using Wolfram Alpha as the source of truth: https://www.wolframalpha.com/input/?i=president+cyprus.
 
 -----------------------------------
-Solidity Special Notes:
+Solidity Implementation Special Notes:
  *  Biased against Voting Enums.
  *  Require(s) changed to modifiers in most cases.
  *  Reduce constants favoring rutntime construction parameters.
